@@ -1,0 +1,151 @@
+<script>
+  import Chart from './Chart.svelte';
+
+  let chartType = '';
+
+  const questions = [
+    {
+      text: 'Do you want to show a trend that changes over time?',
+      options: [
+        { text: 'Yes', next: 1 },
+        { text: 'No', next: 2 }
+      ]
+    },
+    {
+      text: 'Your main goal is to:',
+      options: [
+        { text: 'Compare', next: 3 },
+        { text: 'Emphasize hierarchy or ranking', chartType: 'slope chart' },
+        { text: 'Show the proportion of parts that compose a whole', chartType: 'sankey' }
+      ]
+    },
+    {
+      text: 'Your main goal is to:',
+      options: [
+        { text: 'Compare', next: 4 },
+        { text: 'Emphasize hierarchy or ranking', chartType: 'bar' },
+        { text: 'Show the proportion of parts that compose a whole', next: 5 }
+      ]
+    },
+    {
+      text: 'What you need to compare are:',
+      options: [
+        { text: 'multiple sizes or quantities', chartType: 'overlapping area chart' },
+        { text: 'two sets of data', chartType: 'dual axis line chart' }
+      ]
+    },
+    {
+      text: 'What you need to compare are:',
+      options: [
+        { text: 'multiple sizes or quantities', chartType: 'bubble' },
+        { text: 'two sets of data', chartType: 'paired columns' }
+      ]
+    },
+    {
+      text: "Do you have a small number of parts composing the whole?",
+      options: [
+        { text: 'Yes', chartType: 'donut' },
+        { text: 'No', chartType: 'treemap' }
+      ]
+    }
+  ];
+
+  let currentQuestionIndex = 0;
+  let selectedOptions = [];
+
+  function handleOptionSelect(option) {
+    selectedOptions = [...selectedOptions, {
+      question: currentQuestionIndex,
+      answer: option.text
+    }];
+
+    if (option.chartType) {
+      chartType = option.chartType;
+    } else if (option.next !== undefined) {
+      currentQuestionIndex = option.next;
+    }
+  }
+
+  function goBack() {
+  if (chartType) {
+    chartType = '';
+    currentQuestionIndex = 0;
+    selectedOptions = [];
+  } else if (selectedOptions.length > 0) {
+    selectedOptions = selectedOptions.slice(0, -1);
+    currentQuestionIndex = selectedOptions.length > 0
+      ? selectedOptions[selectedOptions.length - 1].question
+      : 0;
+    chartType = '';
+  }
+}
+
+</script>
+
+<main>
+  {#if !chartType}
+    <div class="question-container">
+      <h1>{questions[currentQuestionIndex].text}</h1>
+      <div class="options">
+        {#each questions[currentQuestionIndex].options as option}
+          <button on:click={() => handleOptionSelect(option)}>
+            {option.text}
+          </button>
+        {/each}
+      </div>
+      {#if selectedOptions.length > 0}
+        <button class="back-button" on:click={goBack}>← Back</button>
+      {/if}
+    </div>
+  {:else}
+    <div class="result-container">
+      <h2>Selected Chart: {chartType}</h2>
+      <Chart {chartType} />
+      <button class="back-button" on:click={goBack}>← Start Over</button>
+    </div>
+  {/if}
+</main>
+
+<style>
+  .question-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .result-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+  }
+
+  button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  button:hover {
+    background: #45a049;
+  }
+
+  .back-button {
+    margin-top: 1rem;
+    background: #666;
+  }
+
+  .back-button:hover {
+    background: #555;
+  }
+</style>

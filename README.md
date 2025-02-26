@@ -1,34 +1,47 @@
-# Capstone-Longo-MMC6950
-Capstone-Longo-MMC6950-Charthelper
+# Svelte + Vite
 
-Charthelper is a user-friendly chart recommendation tool designed to help users select the most appropriate visualization for their data. By guiding users through a simple question-and-answer process, Charthelper recommends effective chart types based on the dataset and objectives. The application aims to make data visualization accessible to professionals, students, and enthusiasts, bridging the gap between complex data and clear, engaging storytelling.
-Core Features:
+This template should help get you started developing with Svelte in Vite.
 
-Guided Chart Selection Process
+## Recommended IDE Setup
 
-    A step-by-step Q&A system that leads users to the best chart type based on input.
-    Questions focus on data type (categorical, numerical, time-series) and visualization objectives.
+[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 
-Real-World Examples
+## Need an official Svelte framework?
 
-    A curated database of links showcasing real-world applications of each chart type.
-    Examples from reputable sources like for example, The New York Times, Financial Times, and Washington Post.
+Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
 
-Chart Descriptions and Insights
+## Technical considerations
 
-    Educational content explaining the purpose, strengths, and limitations of each chart type.
-    Historical and innovative uses of visualization techniques.
+**Why use this over SvelteKit?**
 
-Interactive Chart Display
+- It brings its own routing solution which might not be preferable for some users.
+- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
 
-    Embedded models from a JavaScript library to display recommended chart types.
-    Users can explore visualizations dynamically through tooltips, zooming, and interactivity.
+This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
 
-Basic Customization Options
+Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
 
-    Ability to modify certain visual elements, such as font style, via an external API call.
+**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
 
-Accessibility and User-Friendly Design
+Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
 
-    Clean, intuitive interface catering to both beginners and experienced users.
-    Features for accessibility, including screen reader compatibility and high-contrast modes.
+**Why include `.vscode/extensions.json`?**
+
+Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+
+**Why enable `checkJs` in the JS template?**
+
+It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
+
+**Why is HMR not preserving my local component state?**
+
+HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
+
+If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
+
+```js
+// store.js
+// An extremely simple external store
+import { writable } from 'svelte/store'
+export default writable(0)
+```
