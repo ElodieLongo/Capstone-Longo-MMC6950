@@ -38,7 +38,7 @@
         case 'overlapping area chart':
           drawFns.drawAreaChart(chartContainer);
           break;
-        case 'bubble':
+        case 'bubble':``
           drawFns.drawBubbleChart(chartContainer);
           break;
         case 'donut':
