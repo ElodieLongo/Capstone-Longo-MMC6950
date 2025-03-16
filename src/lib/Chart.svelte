@@ -35,7 +35,7 @@
       chartContainer.innerHTML = ''; // Clear previous chart
 
       switch (chartType) {
-        case 'overlapping area chart':
+        case 'overlapping area':
           drawFns.drawAreaChart(chartContainer);
           break;
         case 'bubble':``
@@ -44,13 +44,13 @@
         case 'donut':
           drawFns.drawDonutChart(chartContainer);
           break;
-        case 'stacked bar':
+        case 'stacked':
           drawFns.drawStackedBarChart(chartContainer);
           break;
-        case 'dual axis line chart':
-          drawFns.drawDualAxisLineChart(chartContainer);
-          break;
-        case 'slope chart':
+        // case 'dual axis line chart':
+        //   drawFns.drawDualAxisLineChart(chartContainer);
+        //   break;
+        case 'slope':
           drawFns.drawSlopeChart(chartContainer);
           break;
         case 'sankey':

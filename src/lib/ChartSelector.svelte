@@ -15,7 +15,7 @@
       text: 'Your main goal is to:',
       options: [
         { text: 'Compare', next: 3 },
-        { text: 'Emphasize hierarchy or ranking', chartType: 'slope chart' },
+        { text: 'Emphasize hierarchy or ranking', chartType: 'stacked' },
         { text: 'Show the proportion of parts that compose a whole', chartType: 'sankey' }
       ]
     },
@@ -30,8 +30,8 @@
     {
       text: 'What you need to compare are:',
       options: [
-        { text: 'multiple sizes or quantities', chartType: 'overlapping area chart' },
-        { text: 'two sets of data', chartType: 'dual axis line chart' }
+        { text: 'multiple sizes or quantities', chartType: 'overlapping area' },
+        { text: 'two sets of data', chartType: 'slope' }
       ]
     },
     {

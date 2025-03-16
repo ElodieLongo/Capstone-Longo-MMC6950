@@ -110,26 +110,20 @@ export function drawTreemap(chartContainer) {
 
 export function drawStackedBarChart(chartContainer) {
   const data = GoogleCharts.api.visualization.arrayToDataTable([
-    ['City', '2010 Population', '2000 Population'],
-    ['New York City, NY', 8175000, 8008000],
-    ['Los Angeles, CA', 3792000, 3694000],
-    ['Chicago, IL', 2695000, 2896000],
-    ['Houston, TX', 2099000, 1953000],
-    ['Philadelphia, PA', 1526000, 1517000]
-  ]);
+    ['Genre', 'Fantasy & Sci Fi', 'Romance', 'Mystery/Crime', 'General',
+    'Western', 'Literature', { role: 'annotation' } ],
+   ['2010', 10, 24, 20, 32, 18, 5, ''],
+   ['2020', 16, 22, 23, 30, 16, 9, ''],
+   ['2030', 28, 19, 29, 30, 12, 13, '']
+ ]);
 
-  const options = {
-    title: 'Population of Largest U.S. Cities (2010 vs. 2000)',
-    chartArea: { width: '50%' },
-    isStacked: true,
-    hAxis: {
-      title: 'Total Population',
-      minValue: 0,
-    },
-    vAxis: {
-      title: 'City'
-    }
-  };
+ var options = {
+   width: 600,
+   height: 400,
+   legend: { position: 'top', maxLines: 3 },
+   bar: { groupWidth: '75%' },
+   isStacked: true
+ };
 
   const chart = new GoogleCharts.api.visualization.BarChart(chartContainer);
   chart.draw(data, options);
