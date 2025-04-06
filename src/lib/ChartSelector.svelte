@@ -1,5 +1,6 @@
 <script>
   import Chart from './Chart.svelte';
+  import '../styles/main.css';
 
   let chartType = '';
 
@@ -86,66 +87,31 @@
   {#if !chartType}
     <div class="question-container">
       <h1>{questions[currentQuestionIndex].text}</h1>
-      <div class="options">
-        {#each questions[currentQuestionIndex].options as option}
-          <button on:click={() => handleOptionSelect(option)}>
-            {option.text}
-          </button>
-        {/each}
-      </div>
+
+  <div class="segment segment--{questions[currentQuestionIndex].options.length}">
+    {#each questions[currentQuestionIndex].options as option}
+        <button
+        type="button"
+        class="segment__item"
+        on:click={() => handleOptionSelect(option)}
+      >
+        {option.text}
+      </button>
+    {/each} 
+  </div>
+
       {#if selectedOptions.length > 0}
         <button class="back-button" on:click={goBack}>← Back</button>
       {/if}
     </div>
+
   {:else}
     <div class="result-container">
       <h2>Selected Chart: {chartType}</h2>
+      <p class="test-class">Another test</p>
       <Chart {chartType} />
       <button class="back-button" on:click={goBack}>← Start Over</button>
     </div>
   {/if}
 </main>
 
-<style>
-  .question-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-  }
-
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .result-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-  }
-
-  button {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    background: #4CAF50;
-    color: white;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-
-  button:hover {
-    background: #45a049;
-  }
-
-  .back-button {
-    margin-top: 1rem;
-    background: #666;
-  }
-
-  .back-button:hover {
-    background: #555;
-  }
-</style>
