@@ -1,97 +1,103 @@
 <script>
-    import { onMount } from 'svelte';
-    import { GoogleCharts } from 'google-charts';
-    import * as drawFns from './chartUtils.js';
-    import { createClient } from '@supabase/supabase-js';
-    export let chartType;
-
-    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-    const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-    const supabase = createClient(supabaseUrl, supabaseAnonKey)
-
-    let chartContainer;
-    let chartData = [];
-
-    onMount(async () => {
-      const { data, error } = await supabase
-        .from('chart_examples')
-        .select('*');
-
-      if (error) {
-        console.error('Error fetching data:', error);
-      } else {
-        chartData = data;
-        console.log(data)
-        GoogleCharts.load(drawChart);
-      }
-    });
-
-    function drawChart() {
-      if (!chartContainer) {
-        console.error("Chart container not found!");
-        return;
-      }
-
-      chartContainer.innerHTML = ''; // Clear previous chart
-
+  import { onMount } from 'svelte';
+  import * as drawFns from './chartUtils.js';
+  import { createClient } from '@supabase/supabase-js';
+  
+  export let chartType;
+  
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+  const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+  
+  let chartContainer;
+  let chartData = [];
+  
+  onMount(async () => {
+    console.log("Chart.svelte onMount called");
+    const { data, error } = await supabase
+      .from('chart_examples')
+      .select('*');
+      
+    if (error) {
+      console.error('Error fetching data:', error);
+    } else {
+      chartData = data;
+      console.log("Data fetched:", data);
+      drawChart();
+    }
+  });
+  
+  async function drawChart() {
+    console.log("drawChart called");
+    
+    if (!chartContainer) {
+      console.error("Chart container not found!");
+      return;
+    }
+    
+    console.log("Chart container:", chartContainer);
+    console.log("Chart type:", chartType);
+    chartContainer.innerHTML = ''; // Clear previous chart
+    
+    try {
       switch (chartType) {
         case 'overlapping area':
-          drawFns.drawAreaChart(chartContainer);
+          await drawFns.drawAreaChart(chartContainer);
           break;
-        case 'bubble':``
-          drawFns.drawBubbleChart(chartContainer);
+        case 'bubble':
+          await drawFns.drawBubbleChart(chartContainer);
           break;
         case 'donut':
-          drawFns.drawDonutChart(chartContainer);
+          await drawFns.drawDonutChart(chartContainer);
           break;
         case 'stacked':
-          drawFns.drawStackedBarChart(chartContainer);
+          await drawFns.drawStackedBarChart(chartContainer);
           break;
-        // case 'dual axis line chart':
-        //   drawFns.drawDualAxisLineChart(chartContainer);
-        //   break;
         case 'slope':
-          drawFns.drawSlopeChart(chartContainer);
+          await drawFns.drawSlopeChart(chartContainer);
           break;
         case 'sankey':
-          drawFns.drawSankeyChart(chartContainer);
+          await drawFns.drawSankeyChart(chartContainer);
           break;
         case 'paired columns':
-          drawFns.drawPairedColumnsChart(chartContainer);
+          await drawFns.drawPairedColumnsChart(chartContainer);
           break;
         case 'bar':
-          drawFns.drawBarChart(chartContainer);
+          await drawFns.drawBarChart(chartContainer);
           break;
         case 'treemap':
-          drawFns.drawTreeMap(chartContainer);
+          await drawFns.drawTreeMap(chartContainer);
           break;
         default:
           console.log("Unknown chart", chartType);
       }
+    } catch (error) {
+      console.error("Error drawing chart:", error);
     }
+  }
+  
+  $: if (chartType && chartContainer) {
+    drawChart();
+  }
 </script>
 
 <div class="chart-wrapper" bind:this={chartContainer}></div>
-
 {#if chartData.length > 0}
   {@const hasAPIData = chartData.find(el => el.type === chartType)}
   {#if hasAPIData}
     <h1> See real-life examples ↓ </h1>
     {#each hasAPIData.content_link as linkAndThumb}
-    <div class="api-data">
-      <a href={linkAndThumb.href}>{linkAndThumb.href}</a>
-      <img src={linkAndThumb.thumbnail} alt="img preview" />
-    </div>
-    
-    <hr />
+      <div class="api-data">
+        <a href={linkAndThumb.href}>{linkAndThumb.href}</a>
+        <img src={linkAndThumb.thumbnail} alt="img preview" />
+      </div>
+      <hr />
     {/each}
-
   {:else}
-  <p class="red">Missing API data for this Chart. Data is coming - Stay tuned!</p>
-  <p class="red">Right now the API data is available for charts {chartData.map(c => c.type)}.</p>
+    <p class="red">Missing API data for this Chart. Data is coming - Stay tuned!</p>
+    <p class="red">Right now the API data is available for charts {chartData.map(c => c.type)}.</p>
   {/if}
 {/if}
-
 
 <style>
   .chart-wrapper {
@@ -99,16 +105,13 @@
     max-width: 800px;
     margin: 2rem auto;
   }
-
   .red {
     color: red;
   }
-
   img {
     height: 100px;
     width: 150px;
   }
-
   .api-data {
     display: flex;
     align-items: center;

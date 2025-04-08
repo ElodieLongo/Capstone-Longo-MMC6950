@@ -1,11 +1,17 @@
 <script>
+	import Router from 'svelte-spa-router';
+	import Homepage from './lib/Homepage.svelte';
 	import ChartSelector from './lib/ChartSelector.svelte';
-  </script>
   
-  <div class="app-container">
-	<div class="main-content">
-	  <h1>Charthelper</h1>
-	  <div class="segment-container">  <ChartSelector />
-	</div>
-  </div>
-</div>
+	
+	const routes = {
+		'/': Homepage,
+		'/select': ChartSelector
+	};
+  </script>
+
+  <Router {routes} />
+
+ 
+  
+  
