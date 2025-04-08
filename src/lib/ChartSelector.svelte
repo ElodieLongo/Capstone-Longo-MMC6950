@@ -1,4 +1,5 @@
 <script>
+  import Layout from './Layout.svelte';
   import Chart from './Chart.svelte';
   import '../styles/main.css';
 
@@ -82,23 +83,21 @@
 }
 
 </script>
-
-<main>
+<Layout>
+  <main class="select-page">
   {#if !chartType}
     <div class="question-container">
       <h1>{questions[currentQuestionIndex].text}</h1>
 
-  <div class="segment segment--{questions[currentQuestionIndex].options.length}">
-    {#each questions[currentQuestionIndex].options as option}
-        <button
-        type="button"
-        class="segment__item"
-        on:click={() => handleOptionSelect(option)}
-      >
-        {option.text}
-      </button>
-    {/each} 
-  </div>
+      <div class="segment-container">
+        <div class="segment segment--{questions[currentQuestionIndex].options.length}">
+          {#each questions[currentQuestionIndex].options as option}
+            <button class="segment__item" on:click={() => handleOptionSelect(option)}>
+              {option.text}
+            </button>
+          {/each}
+        </div>
+      </div>
 
       {#if selectedOptions.length > 0}
         <button class="back-button" on:click={goBack}>← Back</button>
@@ -114,4 +113,4 @@
     </div>
   {/if}
 </main>
-
+</Layout>

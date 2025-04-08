@@ -1,5 +1,8 @@
 <script>
+    import Layout from './Layout.svelte';
     import { push } from 'svelte-spa-router';
+    import '../styles/main.css';
+
  
 
     function startQuiz() {
@@ -7,19 +10,26 @@
     }
 </script>
 
-<main class="home">
-    <header>
-        <h1>Charthelper</h1>
-    </header>
-
-
-    <section class="hero">
+<Layout>
+    <main class="home">
+      <section class="hero">
         <h2>What is the best chart to present your data?</h2>
         <p>If this question sounds challenging, Charthelper is for you.</p>
+        
+      </section>
+  
+      <section class="intro">
+        <p>
+          Charthelper will guide your choice based on data-visualization best practices and a curated archive
+          of visualizations from leading industry case studies.
+        </p>
+        <p>It's effortless.</p>
         <button on:click={startQuiz}>Try it now</button>
-    </section>
+      </section>
 
-    <footer>
-        <p>© 2025 Charthelper – all rights reserved.</p>
-    </footer>
-</main>
+      
+  </main>
+</Layout>
+
+
+    
