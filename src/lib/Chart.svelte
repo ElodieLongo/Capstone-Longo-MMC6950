@@ -88,8 +88,8 @@
     <h2> See real-life examples<br> ↓ </h2>
     {#each hasAPIData.content_link as linkAndThumb}
       <div class="api-data">
-        <a href={linkAndThumb.href}>{linkAndThumb.href}</a>
         <img src={linkAndThumb.thumbnail} alt="img preview" />
+        <a href={linkAndThumb.href}>{linkAndThumb.href}</a>
       </div>
       <hr />
     {/each}
@@ -99,24 +99,3 @@
   {/if}
 {/if}
 
-<style>
-  .chart-wrapper {
-    width: 100%;
-    max-width: 800px;
-    margin: 2rem auto;
-  }
-  .red {
-    color: red;
-  }
-  img {
-    height: 100px;
-    width: 150px;
-  }
-  .api-data {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: blanchedalmond;
-  }
-</style>
