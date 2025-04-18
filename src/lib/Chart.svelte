@@ -41,15 +41,15 @@
     
     try {
       switch (chartType) {
-        case 'overlapping area':
-          await drawFns.drawAreaChart(chartContainer);
+        case 'dualaxis':
+          await drawFns.drawDualAxisLineChart(chartContainer);
           break;
         case 'bubble':
           await drawFns.drawBubbleChart(chartContainer);
           break;
         case 'donut':
           await drawFns.drawDonutChart(chartContainer);
-          break;
+          break; 
         case 'stacked':
           await drawFns.drawStackedBarChart(chartContainer);
           break;
@@ -62,14 +62,14 @@
         case 'paired columns':
           await drawFns.drawPairedColumnsChart(chartContainer);
           break;
-        case 'bar':
+        case 'barchart':
           await drawFns.drawBarChart(chartContainer);
           break;
         case 'treemap':
           await drawFns.drawTreeMap(chartContainer);
           break;
         default:
-          console.log("Unknown chart", chartType);
+          console.log("Unknown", chartType);
       }
     } catch (error) {
       console.error("Error drawing chart:", error);
@@ -85,7 +85,7 @@
 {#if chartData.length > 0}
   {@const hasAPIData = chartData.find(el => el.type === chartType)}
   {#if hasAPIData}
-    <h1> See real-life examples ↓ </h1>
+    <h2> See real-life examples<br> ↓ </h2>
     {#each hasAPIData.content_link as linkAndThumb}
       <div class="api-data">
         <a href={linkAndThumb.href}>{linkAndThumb.href}</a>

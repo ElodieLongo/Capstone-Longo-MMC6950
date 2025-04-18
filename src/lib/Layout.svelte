@@ -38,11 +38,23 @@
     </svg>
   </div>
 
-  <nav>
-    <a href="/contribute">Contribute</a>
-    <a href="/archive">Chart Archive</a>
-    <a href="/about">About</a>
+  <nav class="main-nav">
+    <div class="menu-desktop">
+      <a href="/contribute">Contribute</a>
+      <a href="/archive">Chart Archive</a>
+      <a href="/about">About</a>
+    </div>
+
+    <div class="mobile-nav">
+      <select on:change={(e) => window.location.href = e.target.value}>
+        <option value="">Menu</option>
+        <option value="/archive">Chart archive</option>
+        <option value="/examples">Examples</option>
+        <option value="/about">About</option>
+      </select>
+      </div>
   </nav>
+ 
 </header>
 
 <main class="page-content">
@@ -52,8 +64,10 @@
 <footer class="site-footer">
   <p>© 2025 Charthelper – all rights reserved.</p>
   <div class="social">
-    <a href="#"><img src="/icons/facebook.svg" alt="Facebook" /></a>
-    <a href="#"><img src="/icons/instagram.svg" alt="Instagram" /></a>
+    <a href="https://www.facebook.com/elodie.longo/" aria-label="Facebook">
+      <i class="bi bi-facebook"></i>
+    </a>
+    <a href="https://www.instagram.com/elodielongo/" aria-label="Instagram"><i class="bi bi-instagram"><i></a>
   </div>
 </footer>
 </div>

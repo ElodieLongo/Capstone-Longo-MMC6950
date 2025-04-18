@@ -32,7 +32,7 @@
     {
       text: 'What you need to compare are:',
       options: [
-        { text: 'multiple sizes or quantities', chartType: 'overlapping area' },
+        { text: 'multiple sizes or quantities', chartType: 'dualaxis' },
         { text: 'two sets of data', chartType: 'slope' }
       ]
     },
@@ -106,8 +106,7 @@
 
   {:else}
     <div class="result-container">
-      <h2>Selected Chart: {chartType}</h2>
-      <p class="test-class">Another test</p>
+      <h1>Our recommended visualization is the {chartType} chart</h1>
       <Chart {chartType} />
       <button class="back-button" on:click={goBack}>← Start Over</button>
     </div>

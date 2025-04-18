@@ -164,7 +164,7 @@ export async function drawStackedBarChart(chartContainer) {
     const chart = new google.visualization.BarChart(chartContainer);
     chart.draw(data, options);
   } catch (error) {
-    console.error("Error in drawStackedBarChart:", error);
+    console.error("Error in drawBarChart:", error);
   }
 }
 
