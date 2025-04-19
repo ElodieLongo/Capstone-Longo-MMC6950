@@ -373,7 +373,7 @@ border-radius: 999px;
   }
 
   .hero {
-    background-image: url('static/Hero.jpg');
+    background-image: url('/Hero.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
