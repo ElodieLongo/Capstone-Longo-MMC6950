@@ -81,8 +81,8 @@
     chartType = '';
   }
 }
-
 </script>
+
 <Layout>
   <main class="select-page">
   {#if !chartType}

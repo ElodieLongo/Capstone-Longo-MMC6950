@@ -5,6 +5,13 @@
   function goHome() {
     push('/');
   }
+
+  function handleMobileNav(event) {
+    const value = event.target.value;
+    if (value) {
+      push(value);
+    }
+  }
 </script>
 
 <div class="layout-wrapper">
@@ -40,16 +47,16 @@
 
   <nav class="main-nav">
     <div class="menu-desktop">
-      <a href="/contribute">Contribute</a>
+      <a href="#" on:click|preventDefault={() => push('/contribute')}>Contribute</a>
       <a href="/archive">Chart Archive</a>
       <a href="/about">About</a>
     </div>
 
     <div class="mobile-nav">
-      <select on:change={(e) => window.location.href = e.target.value}>
+      <select on:change={handleMobileNav}>
         <option value="">Menu</option>
         <option value="/archive">Chart archive</option>
-        <option value="/examples">Examples</option>
+        <option value="/contribute">Contribute</option>
         <option value="/about">About</option>
       </select>
       </div>
