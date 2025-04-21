@@ -69,7 +69,8 @@ height: 100%;
 
 /* Titles and subtitles */
 
-.hero h2 {
+.hero h2
+.chart-archive h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -82,7 +83,8 @@ height: 100%;
 }
 
 .main-content h1,
-.contribute h1 {
+.contribute h1,
+.chart-archive h1 {
     width: 100%; 
     color: #fff;
     display: flex;
@@ -124,7 +126,6 @@ height: 100%;
   .mobile-nav {
     display: none;
   }
-
 
     .mobile-nav select {
       padding: 0.5rem 1rem;
@@ -268,18 +269,33 @@ height: 100%;
 button {
     border: none;
     border-radius: 4px;
-    background: none;
     color: inherit;
     cursor: pointer;
     padding: 0;
 }
 
-button:hover {
-    background: none;
+.intro button {
+  background-color: #6ee7b7;
+  color: #1F1A38;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 1rem;
 }
 
+.intro button:hover {
+  background-color: #0061fc;
+  color: #ffffff;
+}
+
+
+
 .back-button,
-.submit-button {
+.submit-button,
+a.back-button {
     margin-top: 2rem;
     width: fit-content;
     align-self: center;
@@ -291,11 +307,15 @@ button:hover {
     cursor: pointer;
     font-weight: regular;
     font-size: 0.8rem;
+    text-decoration: none;
     margin-top: 1rem;
+    display: inline-block;
 }
 
 .back-button:hover,
-.submit-button:hover {
+.submit-button:hover
+a.back-button:hover
+ {
     background: #ffffff;
     color: #0061fc;
 }
@@ -380,7 +400,8 @@ border-radius: 999px;
     color: white;
   }
 
-  .hero {
+  .hero,
+  .about {
     background-image: url('/Hero.jpg');
     background-size: cover;
     background-position: center;
@@ -389,21 +410,15 @@ border-radius: 999px;
     color: white;
     text-align: center;
 }
+
+.about-p {
+  line-height: 1.6 ;
+  max-width: 700px;
+  margin: 0 auto;
+}
   
 
- 
 
-  .intro button {
-    background-color: #6ee7b7;
-    color: #1F1A38;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    margin-top: 1rem;
-  }
 
   .intro {
     background-color: #1b1730;
@@ -421,6 +436,7 @@ legend.contribute-h3 {
   margin: 0 auto;
   margin-top: 2rem;
 }
+
 
 
 .contribute-h3 {
@@ -485,8 +501,35 @@ legend.contribute-h3 {
     background-color: #ffffff;
     color: #0061fc;
   }
+
+  /*   //About  */
+
+  .about-button {
+    background-color: #0061fc;
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 9999px;
+    font-weight: bold;
+    cursor: pointer;
+  } 
+
+  .about-p {
+    line-height: 2rem;
+  }
+
+  .submit-button:hover {
+    background-color: #ffffff;
+    color: #0061fc;
+  }
   
-  
+   /*   //Chart Archive  */
+   .chart-archive {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
   /* Mobile*/
 
   @media (max-width: 600px) {

@@ -47,15 +47,15 @@
 
   <nav class="main-nav">
     <div class="menu-desktop">
-      <a href="#" on:click|preventDefault={() => push('/contribute')}>Contribute</a>
-      <a href="/archive">Chart Archive</a>
-      <a href="/about">About</a>
+      <a href="/contribute" on:click|preventDefault={() => push('/contribute')}>Contribute</a>
+      <a href="/chartarchive" on:click|preventDefault={() => push('/chartarchive')}>Chart Archive</a>
+      <a href="/about" on:click|preventDefault={() => push('/about')}>About</a>
     </div>
 
     <div class="mobile-nav">
       <select on:change={handleMobileNav}>
         <option value="">Menu</option>
-        <option value="/archive">Chart archive</option>
+        <option value="/chartarchive">Chart archive</option>
         <option value="/contribute">Contribute</option>
         <option value="/about">About</option>
       </select>
