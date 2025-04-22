@@ -62,7 +62,7 @@
         case 'paired columns':
           await drawFns.drawPairedColumnsChart(chartContainer);
           break;
-        case 'barchart':
+        case 'bar':
           await drawFns.drawBarChart(chartContainer);
           break;
         case 'treemap':
