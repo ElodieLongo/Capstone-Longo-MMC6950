@@ -13,7 +13,7 @@
 <Layout>
     <main class="home">
       <section class="hero">
-        <h2>What is the best chart to present your data?</h2>
+        <h1>What is the best chart to present your data?</h1>
         <p>If this question sounds challenging, Charthelper is for you.</p>
         
       </section>
