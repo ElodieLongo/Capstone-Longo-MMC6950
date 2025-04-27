@@ -22,5 +22,5 @@ Google Charts: To render sample charts dynamically based on user selections.
 
 ## Preview
 
-![Charthelper preview](./public/Charthelper-README.gif)
+![Charthelper preview](./Charthelper-README.gif)
 
